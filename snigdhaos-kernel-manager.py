@@ -1,18 +1,13 @@
 #!/usr/bin/env python3
 
 import os
-import gi
-import signal
 import functions as fn
-
-from ui.ManagerGUI import ManagerGUI
-
+from ui import ManagerGUI
+import gi
 gi.require_version("Gtk", "4.0")
-
-from gi.repository import Gtk, Gio, GLib, Gdk
+from gi.repository import Gtk, Gio, GLib
 
 base_dir = fn.os.path.dirname(fn.os.path.realpath(__file__))
-
 
 app_name = "Snigdha OS Kernel Manager"
 app_version = "${app_version}"
@@ -28,9 +23,7 @@ class Main(Gtk.Application):
 
     def do_activate(self):
         default_context = GLib.MainContext.default()
-
         win = self.props.active_window
-
         if not win:
             win = ManagerGUI(
                 application=self,
@@ -49,7 +42,6 @@ class Main(Gtk.Application):
         Gtk.StyleContext.add_provider_for_display(
             display, provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         )
-
         win.present()
 
     def do_startup(self):
