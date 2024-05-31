@@ -70,17 +70,17 @@ thread_monitor_messages = "thread_monitor_messages"
 thread_refresh_cache = "thread_refresh_cache"
 thread_refresh_ui = "thread_refresh_ui"
 
-cache_dir = "%s/.cache/archlinux-kernel-manager" % home
+cache_dir = "%s/.cache/snigdhaos-kernel-manager" % home
 cache_file = "%s/kernels.toml" % cache_dir
 cache_update = "%s/update" % cache_dir
 
-log_dir = "/var/log/archlinux-kernel-manager"
+log_dir = "/var/log/snigdhaos-kernel-manager"
 event_log_file = "%s/event.log" % log_dir
 
 
 config_file_default = "%s/defaults/config.toml" % base_dir
-config_dir = "%s/.config/archlinux-kernel-manager" % home
-config_file = "%s/.config/archlinux-kernel-manager/config.toml" % home
+config_dir = "%s/.config/snigdhaos-kernel-manager" % home
+config_file = "%s/.config/snigdhaos-kernel-manager/config.toml" % home
 
 logger = logging.getLogger("logger")
 
@@ -1603,7 +1603,7 @@ def update_bootloader(self):
                 else:
                     if (
                         "Skipping"
-                        or "same boot loader version in place already." in stdout_lines
+                        or "same boot loader version in place already." in self.stdout_lines
                     ):
                         logger.info("%s update completed" % self.bootloader)
 
@@ -1636,7 +1636,7 @@ def update_bootloader(self):
                         )
 
                         logger.error("%s update failed" % self.bootloader)
-                        logger.error(str(stdout_lines))
+                        logger.error(str(self.stdout_lines))
                         self.messages_queue.put(event)
 
                         GLib.idle_add(
