@@ -47,12 +47,17 @@ class Main(Gtk.Application):
         provider = Gtk.CssProvider.new()
         # creates a new Gio.File object representing the CSS file at the path base_dir + "/snigdhaos-kernel-manager.css"
         css_file = Gio.file_new_for_path(base_dir + "/snigdhaos-kernel-manager.css")
+        # loads the CSS styles from the file specified by css_file into the provider
         provider.load_from_file(css_file)
+        # adds the CSS provider (provider) to the display (display) with a priority of Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        # styles provided by this CSS provider will take precedence over other styles for the application
         Gtk.StyleContext.add_provider_for_display(
             display, 
             provider, 
             Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
         )
+        # makes the window win visible to the user
+        # typically called after setting up the window and its contents to ensure it appears on the screen
         win.present()
 
     def do_startup(self):
