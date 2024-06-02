@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/bin/python
 
 import os
 import functions as fn
