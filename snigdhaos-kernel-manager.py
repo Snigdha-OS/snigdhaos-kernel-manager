@@ -70,7 +70,6 @@ class Main(Gtk.Application):
         if os.path.exists(pid_file):
             os.remove(pid_file)
 
-
 def signal_handler(sig, frame):
     Gtk.main_quit(0)
 
