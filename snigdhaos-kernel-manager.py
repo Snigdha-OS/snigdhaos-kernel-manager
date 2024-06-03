@@ -64,10 +64,16 @@ class Main(Gtk.Application):
         Gtk.Application.do_startup(self)
 
     def do_shutdown(self):
+        # invoking this method, the shutdown process of the Gtk application is initiated
         Gtk.Application.do_shutdown(self)
+        # checks if a file, referred to by the variable lock_file, exists in the file system
+        # os.path.exists() function checks whether the specified path exists and returns True if it does, and False otherwise
         if os.path.exists(lock_file):
+            # if the file specified by lock_file exists, this removes it from the file system
             os.remove(lock_file)
+        # checks if a file specified by the variable pid_file exists in the file system
         if os.path.exists(pid_file):
+            # if the file specified by pid_file exists, removes it from the file system
             os.remove(pid_file)
 
 def signal_handler(sig, frame):
