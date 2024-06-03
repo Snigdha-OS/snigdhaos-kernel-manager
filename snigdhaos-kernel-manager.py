@@ -76,7 +76,9 @@ class Main(Gtk.Application):
             # if the file specified by pid_file exists, removes it from the file system
             os.remove(pid_file)
 
+# sig represents the signal number, and frame represents the interrupted stack frame at the time the signal was received
 def signal_handler(sig, frame):
+    # used in GTK (GIMP Toolkit) applications to exit the main event loop and terminate the program
     Gtk.main_quit(0)
 
 if __name__ == "__main__":
