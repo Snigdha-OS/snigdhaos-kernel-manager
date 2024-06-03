@@ -82,13 +82,16 @@ def signal_handler(sig, frame):
 if __name__ == "__main__":
     try:
         # signal.signal(signal.SIGINT, signal_handler)
+        # checks if a file specified by the variable lock_file exists
         if not fn.os.path.isfile(lock_file):
+            # opens a file specified by the variable pid_file in write mode and writes the current process ID (os.getpid()) into it
             with open(pid_file, "w") as f:
                 f.write(str(fn.os.getpid()))
             # splash = SplashScreen()
             app = Main()
             app.run(None)
         else:
+            #  creates an instance of Gtk.MessageDialog, a dialog box for displaying messages to the user
             md = Gtk.MessageDialog(
                 parent=Main(),
                 flags=0,
@@ -96,6 +99,7 @@ if __name__ == "__main__":
                 buttons=Gtk.ButtonsType.YES_NO,
                 text="%s Lock File Found" % app_name,
             )
+            # set additional formatted text in the dialog
             md.format_secondary_markup(
                 "A %s lock file has been found. This indicates there is already an instance of <b>%s</b> running.\n\
                 Click 'Yes' to remove the lock file and try running again"
@@ -103,6 +107,7 @@ if __name__ == "__main__":
             )  # noqa
 
             result = md.run()
+            #  destroyed after the user interacts with it
             md.destroy()
 
             if result in (Gtk.ResponseType.OK, Gtk.ResponseType.YES):
