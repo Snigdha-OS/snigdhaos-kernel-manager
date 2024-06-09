@@ -81,6 +81,7 @@ def signal_handler(sig, frame):
     # used in GTK (GIMP Toolkit) applications to exit the main event loop and terminate the program
     Gtk.main_quit(0)
 
+
 if __name__ == "__main__":
     try:
         # signal.signal(signal.SIGINT, signal_handler)
